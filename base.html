@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .box {
+        padding: 100px 0px;
+        width: 400px;
+        text-align: center;
+        margin: 20px;
+        background-color: rgb(45, 40, 199);
+        display: inline-block;
+      }
+      li {
+        background-color: aliceblue;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        text-align: center;
+        justify-content: space-between;
+      }
+      li.fav {
+        background-color: aqua;
+        color: black;
+      }
+    </style>
+    <title>Sion Inc</title>
+  </head>
+  <body>
+    <div id="appClass">
+      <a v-bind:href="url">Select</a>
+      <ul>
+        <li
+          v-for="book in books"
+          style="list-style-type: none"
+          :class=" { fav: book.isFav  }"
+          @click="toggleIsFav(book)"
+        >
+          <img
+            :src="book.img"
+            :alt="book.title"
+            style="height: 150px; width: 150px"
+          />
+          {{book.title}} - {{book.position}}
+        </li>
+      </ul>
+      <ul>
+        <li
+          v-for="book in filterisFavBooks "
+          style="list-style-type: none"
+          :class=" { fav: book.isFav  }"
+          @click="toggleIsFav(book)"
+        >
+          <img
+            :src="book.img"
+            :alt="book.title"
+            style="height: 150px; width: 150px"
+          />
+          {{book.title}} - {{book.position}}
+        </li>
+      </ul>
+      <div class="box" @mouseover.native="handleEvent($event, 5)">
+        Mousehover (enter)
+      </div>
+      <div class="box" @mouseover.native="handleEvent">Mousehover (enter)</div>
+      <div class="box" @mouseleave.native="handleEvent">leave</div>
+      <div class="box" @dblclick="handleEvent">Double click</div>
+      <div class="box" @mousemove.native="handleMouseMove">
+        position {{x}} - {{y}}
+      </div>
+      <!-- evealuates the condition and return the desired  -->
+      <!-- <p v-if="showAge">{{ age }}</p> -->
+      <p v-show="showAge">{{ age }}</p>
+      <button @click="toggleShowAge">
+        <!--  <span v-if="showAge">Hide Age</span>
+        <span v-if="!showAge">Show Age</span> 
+        <span v-else>Show Age</span> -->
+        <span>Show Age</span>
+      </button>
+      <p>{{ title }}</p>
+      <button @click="changeTitle('Help me Vue')">Submit</button>
+    </div>
+
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
